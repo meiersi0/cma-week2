@@ -17,7 +17,7 @@ wildschwein_BE <- mutate(wildschwein_BE,timelag = as.integer(difftime(lead(Datet
 wildschwein_BE
 
 #How many individuals were tracked? -->3
-#For how long were the individual tracked? Are there gaps? --> 
+#For how long were the individual tracked? Are there gaps? --> Wieso geht das nicht?
 
 wildschwein_BE %>%
   group_by(TierName) %>%
