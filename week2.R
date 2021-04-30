@@ -16,14 +16,21 @@ wildschwein_BE <- mutate(wildschwein_BE,timelag = as.integer(difftime(lead(Datet
 
 wildschwein_BE
 
+#How many individuals were tracked? -->3
+#For how long were the individual tracked? Are there gaps? --> 
 
-summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
-
-wildschwein %>%                           # Take wildschwein...
-  group_by(TierID) %>%                    # ...group it by TierID
-  summarise(                              # Summarise the data...
-    mean_timelag = mean(timelag,na.rm = T)# ...by calculating the mean timelag
+wildschwein_BE %>%
+  group_by(TierName) %>%
+  summarise(         
+    total_obs = sum(timelag)
   )
+    
+#Were all individuals tracked concurrently or sequentially? --> Most of the time Yes (1st Qu. 896 3rd QU. 916 sec) But there are Exceptions
+
+summary(wildschwein_BE)
+
+#What is the temporal sampling interval between the locations? --> Mean 1408 sec
+
+#Task 2
 
 
-wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein$DatetimeUTC), wildschwein$DatetimeUTC))
